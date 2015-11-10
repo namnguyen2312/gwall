@@ -121,13 +121,8 @@
 			
 			<?php endif; ?>
         </div>              
-	</header>
-<div id="menu-left">
-    
+	</header> 
     <?php
-        if (!is_home () ) { /* Does not appear on frontpage */
-           wp_nav_menu( array( 'theme_location' => 'thirddary', 'menu_class' => 'nav-menu' ) ); 
-        }  
+           get_template_part('menuleft');
      ?>
- </div>
     <div id="content" class="cf site-content">
