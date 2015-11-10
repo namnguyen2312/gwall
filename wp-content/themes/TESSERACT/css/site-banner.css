@@ -280,7 +280,20 @@
 	float: right;
 	line-height: 60px;
 	}
-	
+#menu-left{
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100px;
+    background:black;
+    height:100%;
+}	
+#menu-left ul {
+    list-style-type: none;
+    margin: 0;
+    padding:10px;
+    margin-top: 100px;
+}
 #header-button-container-inner {
 	display: table-cell;
 	vertical-align: middle;

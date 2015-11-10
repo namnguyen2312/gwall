@@ -66,7 +66,8 @@ function tesseract_setup() {
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus( array(
 		'primary' => __( 'Header', 'tesseract' ),
-		'secondary' => __( 'Footer', 'tesseract' )
+		'secondary' => __( 'Footer', 'tesseract' ),
+        'thirddary' => __( 'Menu', 'tesseract' )
 	) );
 
 	/*
@@ -116,7 +117,7 @@ endif;
  */
 function tesseract_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Primary Sidebar', 'tesseract' ),
+		'name'          => __( 'Left Sidebar', 'tesseract' ),
 		'id'            => 'sidebar-1',
 		'description'   => __( 'Appears on the left.', 'tesseract' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',

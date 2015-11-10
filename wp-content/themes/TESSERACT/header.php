@@ -87,7 +87,7 @@
 						endif; ?>
 
 				</nav><!-- #site-navigation --> 
-                
+                    
             </div>
 
             <?php if ( $headright_content ) : ?>            
@@ -113,19 +113,21 @@
             <?php else : ?>
 			
 				<div id="site-banner-right">
-                
                 	<div id="header-button-container">
                     	<div id="header-button-container-inner">
-                        	<a href="/" class="button primary-button">Primary Button</a>
-                    		<a href="/" class="button secondary-button">Secondary Button</a>
                 		</div>
                    	</div>
                 </div>				
 			
 			<?php endif; ?>
-
-        </div>            
-        
-	</header><!-- #masthead -->
+        </div>              
+	</header>
+<div id="menu-left">
     
+    <?php
+        if (!is_home () ) { /* Does not appear on frontpage */
+           wp_nav_menu( array( 'theme_location' => 'thirddary', 'menu_class' => 'nav-menu' ) ); 
+        }  
+     ?>
+ </div>
     <div id="content" class="cf site-content">
