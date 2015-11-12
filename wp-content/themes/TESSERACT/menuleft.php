@@ -4,7 +4,7 @@
  * @package Tesseract
  */
 
-if ( is_home () ) { /* Does not appear on frontpage */
+if (is_home ()) { /* Does not appear on frontpage */
 	return;
 }
 ?>
