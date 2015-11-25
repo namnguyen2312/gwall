@@ -1797,15 +1797,12 @@ figure {
 
 .headline-resize{
     width:100%;
-<<<<<<< HEAD
-=======
 }
 
 .post{
     max-width: 640px;
     margin:auto;
     font-size:16px;
->>>>>>> Another_Merge_test
 }
 
 .home .entry-content { border: none; }
@@ -2217,9 +2214,6 @@ article.comment-body{
 
 /* =25. Responsive design
 -------------------------------------------------------------- */
-
-
-
 
 
 @media screen and (max-width: 980px) {
