@@ -1,0 +1,205 @@
+/* Smartphones (portrait and landscape) ----------- */
+ @media only screen and (min-device-width : 320px) and (max-device-width : 480px) { 
+ 	.portfolioContainer .col-sm-4 {
+ 		width: 31.799999%;
+ 	}
+	div.main-title h2{
+	  font-size: 1.5em;
+	}
+	div.main-title p {
+	  display: none;
+	}
+    /*Main Header*/
+	.menu-wrap {
+	  font-size: 1.2em;
+	}
+	#mainHeader .content-wrap .logo-decor:before{
+	  display: none;
+	}
+	#mainHeader .content-wrap .logo-decor:after{
+	  display: none;
+	}
+	#mainHeader .content-wrap .center-text h1 {
+	  font-size: 2em;
+	}
+	#mainHeader .content-wrap .center-text p {
+	  font-size: 0.5em;
+	}
+	  /* Portfolio */
+	.single-item .item-description {
+	  margin-right: 15px;
+	  margin-left:15px;
+	}
+	.close {
+		font-size: 1em;
+	}
+	.single-item .col-sm-6 {
+	  padding-right: 0px;
+	  padding-left: 0px;
+	}
+	.item-info span{
+	  width: 40%;
+	}
+	.item-title h3 {
+	  font-size: 1em;
+	}
+	.item-info li {
+	  margin-bottom: 10px;
+	  font-size: 1.0em;
+	  font-weight: 100;
+	}
+	.item h3 {
+	  font-size: 0.7em;
+	}
+	.item p {
+		display: none;
+	}
+	.item .more {
+	  font-size:1.2em;
+	}
+	
+	  /*Service*/
+	.service-content h3 {
+	  font-size: 1.5em;
+	}
+	.main-address {
+	  font-size: 0.8em;
+	}
+	/* Products Details Style============== */
+
+	.productdetails-info p {
+	  font-size: 1em;
+	  line-height: 1.2em;
+	  width: 80%;
+	}
+	.productdetails-content p {
+	  font-size: 1em;
+	  line-height: 1.2em;
+	}
+	ul.list-info {
+	  font-size: 0.8em;
+	}
+	/* Blog Style============== */
+
+	.article-content li{
+	  font-size: 13px;
+	  color: #E3E3E3;
+	  font-weight: 100;
+	}
+	.article-content h2 {
+  	  font-size: 1.5em;
+	}
+	.article-content p{
+	  font-size: 1em;
+	}
+	.post-share-social li a {
+	  font-size: 25px;
+	  color:#fff;
+	}	  
+}
+/* iPads (portrait and landscape) ----------- */ 
+@media only screen and (min-device-width : 481px) and (max-device-width : 1024px) { 
+	.portfolioContainer .col-sm-4 {
+ 		width: 31.799999%;
+ 	}
+ 	div.main-title h2{
+	  font-size: 1.5em;
+	}
+	div.main-title p {
+	  display: none;
+	}
+    /*Main Header*/
+	.menu-wrap {
+	  font-size: 1.2em;
+	}
+	#mainHeader .content-wrap .logo-decor:before{
+	  display: none;
+	}
+	#mainHeader .content-wrap .logo-decor:after{
+	  display: none;
+	}
+	#mainHeader .content-wrap .center-text h1 {
+	  font-size: 2em;
+	}
+	#mainHeader .content-wrap .center-text p {
+	  font-size: 0.5em;
+	}
+	  /* Portfolio */
+	/*.single-item .item-description {
+	  margin-right: 15px;
+	  margin-left:15px;
+	}*/
+	.close {
+		font-size: 1em;
+	}
+	/*.single-item .col-sm-6 {
+	  padding-right: 0px;
+	  padding-left: 0px;
+	}*/
+	.item-title h3 {
+	  font-size: 1em;
+	}
+	.item-info span{
+	  width: 30%;
+	}
+	.item-info li {
+	  margin-bottom: 10px;
+	  font-size: 1.0em;
+	  font-weight: 100;
+	}
+	.item h3 {
+	  font-size: 0.7em;
+	}
+	.item p {
+		display: none;
+	}
+	.item .more {
+	  font-size:1.2em;
+	}
+	
+	  /*Service*/
+	.service-content h3 {
+	  font-size: 1.5em;
+	}
+	.main-address {
+	  font-size: 0.8em;
+	}
+	/* Products Details Style============== */
+
+	.productdetails-info p {
+	  font-size: 1em;
+	  line-height: 1.2em;
+	  width: 80%;
+	}
+	.productdetails-content p {
+	  font-size: 1em;
+	  line-height: 1.2em;
+	}
+	ul.list-info {
+	  font-size: 0.8em;
+	}
+	/* Blog Style============== */
+
+	.article-content li{
+	  font-size: 13px;
+	  color: #E3E3E3;
+	  font-weight: 100;
+	}
+	.article-content h2 {
+  	  font-size: 1.5em;
+	}
+	.article-content p{
+	  font-size: 1em;
+	}
+	.post-share-social li a {
+	  font-size: 25px;
+	  color:#fff;
+	}	  
+}  
+/* Desktops and laptops ----------- */
+ @media only screen and (min-width : 1025px) { 
+	.portfolioContainer .col-sm-4 {
+ 		width: 31.799999%;
+ 	}
+ 	
+ } 
