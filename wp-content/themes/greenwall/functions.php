@@ -39,8 +39,8 @@ function greenwall_scripts() {
 	// Skip link fix
 	wp_enqueue_script( 'greenwall-themepunch-revolution', get_template_directory_uri().'/rs-plugin/js/jquery.themepunch.revolution.min.js', array( 'jquery'), '1.0.0');
 	wp_enqueue_script( 'greenwall-inview', get_template_directory_uri().'/js/jquery.inview.js', array( 'jquery'), '1.0.0' );
-	wp_enqueue_script( 'greenwall-classie', get_template_directory_uri().'/js/classie.js', array( 'jquery'), '1.0.0' );
-	wp_enqueue_script( 'greenwall-main', get_template_directory_uri().'/js/main.js', array( 'jquery'), '1.0.0' );
+	//wp_enqueue_script( 'greenwall-classie', get_template_directory_uri().'/js/classie.js', array( 'jquery'), '1.0.0' );
+	//wp_enqueue_script( 'greenwall-main', get_template_directory_uri().'/js/main.js', array( 'jquery'), '1.0.0' );
 
 }
 
