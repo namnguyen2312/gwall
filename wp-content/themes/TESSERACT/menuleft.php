@@ -12,6 +12,6 @@
 				return;
 			}
 			$parents = wp_list_categories($args);
-			    	echo  $parent;
+			    echo  $parent;
 		?>
  </div>

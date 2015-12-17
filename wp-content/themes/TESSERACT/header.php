@@ -122,7 +122,5 @@
 			<?php endif; ?>
         </div>              
 	</header> 
-    <?php
-           get_template_part('menuleft');
-     ?>
+    
     <div id="content" class="cf site-content">

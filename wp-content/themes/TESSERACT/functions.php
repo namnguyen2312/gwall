@@ -4,6 +4,7 @@
  *
  * @package Tesseract
  */
+include ('/shortcode.php');
 
 /**
  * Set the content width based on the theme's design and stylesheet.
