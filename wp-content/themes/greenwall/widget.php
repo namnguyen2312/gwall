@@ -11,35 +11,47 @@ parent::__construct(
 __('Footer Widget', 'footer_widget_domain'), 
 
 // Widget description
-array( 'description' => __( 'Input the information for footer', 'footer_widget_domain' ), ) 
+array( 'description' => __( 'Input the information for footer', 'footer_widget_domain' ) ) 
 );
 }
 
 // Creating widget front-end
 // This is where the action happens
 public function widget( $args, $instance ) {
-$mainOff = apply_filters( 'footer_mainOff', $instance['mainOff'] );
-$showRoom = apply_filters( 'footer_showRoom', $instance['showRoom'] );
-$phone = apply_filters( 'footer_phone', $instance['phone'] );
-$fax = apply_filters( 'footer_fax', $instance['fax'] );
+$mainOff = apply_filters( 'widget_mainOff', $instance['mainOff'] );
+$showRoom = apply_filters( 'widget_showRoom', $instance['showRoom'] );
+$phone = apply_filters( 'widget_phone', $instance['phone'] );
+$fax = apply_filters( 'widget_fax', $instance['fax'] );
 // before and after widget arguments are defined by themes
 echo $args['before_widget'];
-if ( (! empty( $mainOff ))&& (! empty( $showRoom ))&& (! empty( $phone ))&& (! empty( $fax )))
-echo $args['before_mainOff'] . $mainOff . $args['after_mainOff'];
-echo $args['before_showRoom'] . $showRoom . $args['after_showRoom'];
-echo $args['before_phone'] . $phone . $args['after_phone'];
-echo $args['before_fax'] . $fax . $args['after_fax'];
-
+if ( ! empty( $mainOff )){
+	echo '<p>Main Office :  '.$args['before_mainOff'] . $mainOff . $args['after_mainOff'].' </p>';
+}
+if ( ! empty( $showRoom )){
+	echo '<p>Show Room : '.$args['before_showRoom'] . $showRoom . $args['after_showRoom'].'</p>';
+}
+if ( ! empty( $phone )){
+	echo '<p>Phone : '.$args['before_phone'] . $phone . $args['after_phone'].'</p>';
+}
+if ( ! empty( $fax )){
+	echo '<p>Fax : '.$args['before_fax'] . $fax . $args['after_fax'].'</p>';
+}
 echo $args['after_widget'];
 }
 		
 // Widget Backend 
 public function form( $instance ) {
-if ( (isset( $instance[ 'mainOff' ])) && (isset( $instance[ 'showRoom' ]))&& (isset( $instance[ 'phone' ]))&&( isset( $instance[ 'fax' ])) ) {
-$mainOff = $instance[ 'mainOff' ];
-$showRoom = $instance[ 'showRoom' ];
-$phone = $instance[ 'phone' ];
-$fax = $instance[ 'fax' ];
+if ( isset( $instance[ 'mainOff' ])){
+	$mainOff = $instance[ 'mainOff' ];
+}
+if ( isset( $instance[ 'showRoom' ])){
+	$showRoom = $instance[ 'showRoom' ];
+}
+if ( isset( $instance[ 'phone' ])){
+	$phone = $instance[ 'phone' ];
+}
+if ( isset( $instance[ 'fax' ])){
+	$fax = $instance[ 'fax' ];
 }
 // Widget admin form
 ?>

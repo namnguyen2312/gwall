@@ -36,5 +36,6 @@
 </div>
     <script type="text/javascript" src="<?php bloginfo('template_directory');?>/js/classie.js"></script>
     <script type="text/javascript" src="<?php bloginfo('template_directory');?>/js/main.js"></script>
+<?php wp_footer(); ?>
 </body>
 </html>
