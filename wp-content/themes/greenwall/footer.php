@@ -12,10 +12,11 @@
     <footer id="footer-wrapper" class="content-background">
         <div class="container">
             <div class="main-address">
-                <p>Main Office: 127/97 Ni Su Huynh Lien, F.12, Q.Tan Binh</p>
-                <p>Show Room: 270A Bac Hai, F.12, Q.10</p>
-                <p>Phone: +(08) 39747047</p>
-                <p>fax: +(08) 39747052</p>
+        		<?php if ( is_active_sidebar( 'footer-sidebar' ) ) : ?>
+				<div class="footer-widget-area" >
+            		<?php dynamic_sidebar( 'footer-sidebar' ); ?>
+        		</div>
+    			<?php endif; ?>
                 <a href="#"><i>Email:</i> sales@gwall.vn</a>
                 <div class="social-title">Kết Nối Với Chúng Tôi</div>
                 <nav>
