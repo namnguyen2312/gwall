@@ -1,6 +1,8 @@
 
 
-<?php include ('/template/shortcode.php');
+<?php
+ include ('/template/shortcode.php');
+ include('/widget.php');
 
 if ( ! function_exists( 'greenwall_setup' ) ) :
 
@@ -46,6 +48,19 @@ function greenwall_scripts() {
 
 add_action( 'wp_enqueue_scripts', 'greenwall_scripts' );
 endif;
-
+function greenwall_widgets_init() {     register_sidebar( array(         'name' => __( 'Footer Widget Area', 'greenwall' ),
+        'id' => 'footer-sidebar',
+        'description' => __( 'Appears on the footer, which has its own widgets', 'greenwall' ),
+        'before_widget' => '
+<div id="%1$s" class="widgetfooter">',
+        'after_widget' => '</div>
+',
+        'before_title' => '
+<h3 class="widget-title">',
+        'after_title' => '</h3>
+',
+    ) );
+}
+add_action( 'widgets_init', 'greenwall_widgets_init' );
 
 ?>
