@@ -17,7 +17,7 @@
 	<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
 	
 </head>
-<body>
+<body <?php body_class(); ?> >
 <div id="wrapper">
 	<section id="mainHeader">
 		<header class="header">
