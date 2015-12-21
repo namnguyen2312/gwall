@@ -1,6 +1,7 @@
 <?php
 /**
- * The base configuration for WordPress   
+
+ * The base configuration for WordPress
  *
  * The wp-config.php creation script uses this file during the
  * installation. You don't have to use the web site, you can
@@ -89,3 +90,8 @@ if ( !defined('ABSPATH') )
 
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
+
+
+/** Sets up wordpress auto update without FTP */
+//define( 'FS_METHOD', 'direct' );
+
