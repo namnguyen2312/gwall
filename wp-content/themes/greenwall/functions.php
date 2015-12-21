@@ -167,4 +167,17 @@ if ( ! function_exists( 'greenwall_entry_content' ) ) {
  
   }
 }
+/**
+@ Hàm hiển thị tag của post
+@ thachpham_entry_tag()
+**/
+if ( ! function_exists( 'greenwall_entry_tag' ) ) {
+  function greenwall_entry_tag() {
+    if ( has_tag() ) :
+      echo '<div class="entry-tag">';
+      printf( __('Tagged in %1$s', 'greenwall'), get_the_tag_list( '', ', ' ) );
+      echo '</div>';
+    endif;
+  }
+}
 ?>

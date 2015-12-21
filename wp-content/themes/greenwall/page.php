@@ -11,7 +11,20 @@
  *
  * @var bool
  */
-define('WP_USE_THEMES', true);
+?>
 
-/** Loads the WordPress Environment and Template */
-require( dirname( __FILE__ ) . '/template/contact.php' );
+<?php get_header(); ?>
+<div class="content">
+    <section id="main-content">
+		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+			 <?php get_template_part( 'content' ); ?>
+    	<?php endwhile; ?>
+    	<?php else : ?>
+			<?php get_template_part( 'content', 'none' ); ?>
+    	<?php endif; ?>
+    </section>
+    <section id="sidebar">
+
+    </section>
+</div>
+<?php get_footer(); ?>

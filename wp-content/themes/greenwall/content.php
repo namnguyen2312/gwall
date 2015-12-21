@@ -21,5 +21,6 @@
         </header>
         <div class="entry-content">
  			<?php greenwall_entry_content(); ?>
+ 			<?php ( is_single() ? greenwall_entry_tag() : '' ); ?>
         </div>
 </article>
