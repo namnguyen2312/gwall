@@ -5,9 +5,22 @@
   @ Declare constant variable
   @ THEME_URL: link folder
 **/
-define('THEME_URL', get_template_directory_uri());
- include (dirname( __FILE__ ) . '/template/shortcode.php');
+
+include (dirname( __FILE__ ) . '/template/shortcode.php');
  include(dirname( __FILE__ ) . '/widget.php');
+
+define('THEME_URL', get_template_directory_uri());
+
+ if ( ! function_exists( 'greenwall_theme_setup' ) ) {
+        /*
+         * Nếu chưa có hàm thachpham_theme_setup() thì sẽ tạo mới hàm đó
+         */
+        function greenwall_theme_setup() {
+ 
+        }
+        add_action ( 'init', 'greenwall_theme_setup' );
+ 
+  }
 
 if ( ! function_exists( 'greenwall_setup' ) ) :
 	function greenwall_scripts() {
@@ -62,7 +75,35 @@ function greenwall_widgets_init() { register_sidebar( array( 'name' => __( 'Foot
 }
 add_action( 'widgets_init', 'greenwall_widgets_init' );
 
+
+/*
+* Thêm chức năng post thumbnail
+*/
+add_theme_support( 'post-thumbnails' );
+
+
+/*
+* Thêm chức năng title-tag để tự thêm <title>
+*/
+add_theme_support( 'title-tag' );
+
+
+/*
+* Thêm chức năng post format
+*/
+add_theme_support( 'post-formats',
+    array(
+       'image',
+       'video',
+       'gallery',
+       'quote',
+       'link'
+    )
+ );
+
 /**
+
+
 @ Hàm hiển thị ảnh thumbnail của post.
 @ Ảnh thumbnail sẽ không được hiển thị trong trang single
 @ Nhưng sẽ hiển thị trong single nếu post đó có format là Image
@@ -154,10 +195,9 @@ if ( ! function_exists( 'greenwall_entry_content' ) ) {
   function greenwall_entry_content() {
  
     if ( ! is_single() ) :
-      the_excerpt();
+     the_excerpt();
     else :
-      the_content();
- 
+    the_content();
       /*
        * Code hiển thị phân trang trong post type
        */
@@ -173,6 +213,22 @@ if ( ! function_exists( 'greenwall_entry_content' ) ) {
   }
 }
 /**
+@ Hàm hiển thị nội dung của cua 1 page
+**/
+if ( ! function_exists( 'greenwall_entry_content_page' ) ) {
+  function greenwall_entry_content_page() {
+
+      the_content();
+      $link_pages = array(
+        'before' => __('<p>Page:', 'greenwall'),
+        'after' => '</p>',
+        'nextpagelink'     => __( 'Next page', 'greenwall' ),
+        'previouspagelink' => __( 'Previous page', 'greenwall' )
+      );
+      wp_link_pages( $link_pages );
+  }
+}
+/**
 @ Hàm hiển thị tag của post
 @ thachpham_entry_tag()
 **/
@@ -185,4 +241,6 @@ if ( ! function_exists( 'greenwall_entry_tag' ) ) {
     endif;
   }
 }
+
+
 ?>
