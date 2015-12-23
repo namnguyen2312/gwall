@@ -1,7 +1,8 @@
 <?php 
 	/* Template Name: Contact */
+	wp_head();
 ?>
-<?php get_header(); ?>
+
 <div id="content">
  
         <section id="main-content">
@@ -14,5 +15,3 @@
         </section>
  
 </div>
- 
-<?php get_footer(); ?>

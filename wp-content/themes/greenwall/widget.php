@@ -24,18 +24,20 @@ $phone = apply_filters( 'widget_phone', $instance['phone'] );
 $fax = apply_filters( 'widget_fax', $instance['fax'] );
 // before and after widget arguments are defined by themes
 echo $args['before_widget'];
+echo '<address>';
 if ( ! empty( $mainOff )){
-	echo '<p>Main Office :  '.$args['before_mainOff'] . $mainOff . $args['after_mainOff'].' </p>';
+	echo '<p><i class="icon-home2"></i><strong>Main Office :  </strong> <span>'.$args['before_mainOff'] . $mainOff . $args['after_mainOff'].'</span></p>';
 }
 if ( ! empty( $showRoom )){
-	echo '<p>Show Room : '.$args['before_showRoom'] . $showRoom . $args['after_showRoom'].'</p>';
+	echo '<p><i class="icon-leaf"></i><strong>Show Room : </strong> '.$args['before_showRoom'] . $showRoom . $args['after_showRoom'].'</p>';
 }
 if ( ! empty( $phone )){
-	echo '<p>Phone : '.$args['before_phone'] . $phone . $args['after_phone'].'</p>';
+	echo '<p><i class="icon-phone"></i><strong>Tel :</strong> '.$args['before_phone'] . $phone . $args['after_phone'].'</p>';
 }
 if ( ! empty( $fax )){
-	echo '<p>Fax : '.$args['before_fax'] . $fax . $args['after_fax'].'</p>';
+	echo '<p><i class="icon-printer"></i><strong>Fax : </strong>'.$args['before_fax'] . $fax . $args['after_fax'].'</p>';
 }
+echo '</address>';
 echo $args['after_widget'];
 }
 		

@@ -40,7 +40,7 @@
 						<div class="logo-decor">
 							<a href="index.php"><img class="img-responsive" src="<?php bloginfo('template_directory');?>/images/tets.png" alt="greenwall"></a>
 						</div>
-						<?php echo do_shortcode('[title_test title="Green Wall" class="center-text"]mang khong gian xanh den nha ban[/title_test]');?>
+						<?php echo do_shortcode('[title title="Green Wall" class="center-text"]mang khong gian xanh den nha ban[/title]');?>
 					</div>
 				</div>
 			</div>

@@ -12,7 +12,7 @@
 
 		<div class="container">
 			<?php 
-				echo do_shortcode('[title_test title="Hệ thống Hydroponic" class="main-title white"]Duis mollis placerat quam, eget laoreet tellus tempor eu. Quisque dapibus in purus in dignissim.[/title_test]');?>
+				echo do_shortcode('[title title="Hệ thống Hydroponic" class="main-title white"]Duis mollis placerat quam, eget laoreet tellus tempor eu. Quisque dapibus in purus in dignissim.[/title]');?>
 		</div>
 		<div class="bannercontainer">
 			<div class="banner">
@@ -66,7 +66,7 @@
 
 	<section id="portfolio"> <!-- Start Portfolio -->
 		<div class="container">
-			<?php echo do_shortcode('[title_test title="Phụ kiện hệ thống" class="main-title green"]phụ kiện cho hệ thống gwall[/title_test]');?>
+			<?php echo do_shortcode('[title title="Phụ kiện hệ thống" class="main-title green"]phụ kiện cho hệ thống gwall[/title]');?>
 			<div class="nav nav-fills filters" class="button-group">
 				<button class="btn" data-filter="*" class="current">All</button>
 				<button class="btn" data-filter=".plastic">plastic</button>
@@ -207,7 +207,7 @@
 	
 	<section class="content-background"> <!-- Start Benefit -->
 		<div class="container">
-			<?php echo do_shortcode('[title_test title="Lợi ích" class="main-title white"]những lợi ích bạn có được khi lắp tường cây[/title_test]');?>
+			<?php echo do_shortcode('[title title="Lợi ích" class="main-title white"]những lợi ích bạn có được khi lắp tường cây[/title]');?>
 			<div class="bannercontainerbenefit">
 				<div class="bannerbenefit">
 					<ul>
@@ -310,7 +310,7 @@
 
 	<section id="service"> <!-- Start Service -->
 		<div class="container">
-			<?php echo do_shortcode('[title_test title="dich vu" class="main-title green"]dịch vụ của chúng tôi luôn đáp ứng được những yêu cầu của khách hàng[/title_test]');?>
+			<?php echo do_shortcode('[title title="dich vu" class="main-title green"]dịch vụ của chúng tôi luôn đáp ứng được những yêu cầu của khách hàng[/title]');?>
 
 			<div class="row service-content">
 				<div class="maintenance col-sm-6">

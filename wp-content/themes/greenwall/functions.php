@@ -217,15 +217,7 @@ if ( ! function_exists( 'greenwall_entry_content' ) ) {
 **/
 if ( ! function_exists( 'greenwall_entry_content_page' ) ) {
   function greenwall_entry_content_page() {
-
       the_content();
-      $link_pages = array(
-        'before' => __('<p>Page:', 'greenwall'),
-        'after' => '</p>',
-        'nextpagelink'     => __( 'Next page', 'greenwall' ),
-        'previouspagelink' => __( 'Previous page', 'greenwall' )
-      );
-      wp_link_pages( $link_pages );
   }
 }
 /**
