@@ -8,7 +8,7 @@ parent::__construct(
 'footer_widget', 
 
 // Widget name will appear in UI
-__('Footer Widget', 'footer_widget_domain'), 
+__('Footer', 'footer_widget_domain'), 
 
 // Widget description
 array( 'description' => __( 'Input the information for footer', 'footer_widget_domain' ) ) 
@@ -73,10 +73,10 @@ if ( isset( $instance[ 'fax' ])){
 // Updating widget replacing old instances with new
 public function update( $new_instance, $old_instance ) {
 $instance = array();
-$instance['mainOff'] = ( ! empty( $new_instance['mainOff'] ) ) ? strip_tags( $new_instance['mainOff'] ) : '';
-$instance['showRoom'] = ( ! empty( $new_instance['showRoom'] ) ) ? strip_tags( $new_instance['showRoom'] ) : '';
-$instance['phone'] = ( ! empty( $new_instance['phone'] ) ) ? strip_tags( $new_instance['phone'] ) : '';
-$instance['fax'] = ( ! empty( $new_instance['fax'] ) ) ? strip_tags( $new_instance['fax'] ) : '';
+$instance['mainOff'] = ( ! empty( $new_instance['mainOff'] ) ) ? strip_tags( $new_instance['mainOff'] ) : '127/97 Ni Su Huynh Lien, F.12, Q.Tan Binh';
+$instance['showRoom'] = ( ! empty( $new_instance['showRoom'] ) ) ? strip_tags( $new_instance['showRoom'] ) : '270A Bac Hai, F.12, Q.10';
+$instance['phone'] = ( ! empty( $new_instance['phone'] ) ) ? strip_tags( $new_instance['phone'] ) : '+(08) 39747047';
+$instance['fax'] = ( ! empty( $new_instance['fax'] ) ) ? strip_tags( $new_instance['fax'] ) : '+(08) 39747052';
 return $instance;
 }
 } // Class footer_widget ends here
