@@ -38,7 +38,7 @@ function form_contact($atts,$content=null){
 			<div class="row">
 			<div class="'.$atts['class'].'">
 				<h2>'.$atts['title'].'</h2>
-				<form action="/" method="post" class="contact-form row">	
+				<form  action="" method="post" class="contact-form row">	
 						<div class="col-sm-6">
 							<label for="yourname" class="field">
 								<input type="text" id="yourname" name="yourname" placeholder="Enter Your Name" required>
@@ -64,7 +64,7 @@ function form_contact($atts,$content=null){
 							</label>
 						</div>
 						<div class="col-sm-12">
-							<button name="submit" type="submit" id="contact-submit">Send Email</button>
+							<button name="submit" type="submit" id="contact-submit" >Send Email</button>
 						</div>
 				</form>
 			</div>

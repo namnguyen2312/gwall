@@ -11,7 +11,13 @@
  *
  * @var bool
  */
+if ( isset($_POST["submit"]) == "contact-submit" ) {
+    // Trigger action/function 'contact_send_message'
+    do_action( 'contact_send_message' );
+}
+
 ?>
+
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
         <div class="entry-thumbnail">
  			<?php greenwall_thumbnail( 'thumbnail' ); ?>

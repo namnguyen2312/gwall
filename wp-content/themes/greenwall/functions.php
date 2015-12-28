@@ -7,9 +7,12 @@
 **/
 
 include (dirname( __FILE__ ) . '/template/shortcode.php');
- include(dirname( __FILE__ ) . '/widget.php');
+include(dirname( __FILE__ ) . '/widget.php');
+
 
 define('THEME_URL', get_template_directory_uri());
+
+
 
  if ( ! function_exists( 'greenwall_theme_setup' ) ) {
         /*
@@ -58,7 +61,7 @@ if ( ! function_exists( 'greenwall_setup' ) ) :
 		// Skip link fix
 		wp_enqueue_script( 'greenwall-themepunch-revolution', THEME_URL.'/rs-plugin/js/jquery.themepunch.revolution.min.js', array( 'jquery'), '1.0.0');
 		wp_enqueue_script( 'greenwall-inview', THEME_URL.'/js/jquery.inview.js', array( 'jquery'), '1.0.0' );
-		//wp_enqueue_script( 'greenwall-classie', get_template_directory_uri().'/js/classie.js', array( 'jquery'), '1.0.0' );
+		wp_enqueue_script( 'greenwall-common', THEME_URL.'/js/jquery.common.js', array( 'jquery'), '1.0.0' );
 		//wp_enqueue_script( 'greenwall-main', get_template_directory_uri().'/js/main.js', array( 'jquery'), '1.0.0' );
 
 	}
@@ -233,6 +236,42 @@ if ( ! function_exists( 'greenwall_entry_tag' ) ) {
     endif;
   }
 }
+/**
+@ Hàm send email
+@ wp_mail()
+**/
+function contact_send_message() {
 
+    echo $_POST["yourname"];
+    echo $_POST["youremail"];
+    echo $_POST["subject"];
+    echo $_POST["message"];
+    // get the posted data
+    $name = $_POST["yourname"];
+    $email_address = $_POST["youremail"];
+    $subject = $_POST["subject"];
+    $message = $_POST["message"];
+
+    define('WP_USE_THEMES', false);
+    require('./wp-load.php');
+
+    // write the email content
+    $header .= "MIME-Version: 1.0\n";
+    $header .= "Content-Type: text/html; charset=utf-8\n";
+    $header .= "From:" . $email_address."\n";
+    $to = "suk3c2uit@gmail.com";
+    // send the email using wp_mail()
+    $send=wp_mail($to, $subject, $message, $header);
+     if($send) {
+          echo "send";
+        return false;
+       } else {
+           echo $send;
+        return true;
+       }
+
+}
+
+add_action('contact_send_message', 'contact_send_message');
 
 ?>
