@@ -5,8 +5,11 @@
  * Displays all of the <head> section and everything up till <div id="content">
  *
  * @package greenwall
- */?>
-<?php get_header(); ?>
+ */
+	
+ 	get_header();
+ 	
+?>
 	
 	<section id="slider" class="content-background"> <!-- Start Slider -->
 

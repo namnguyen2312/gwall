@@ -10,25 +10,16 @@
 </section> <!-- End Service -->
 
     <footer id="footer-wrapper" class="content-background">
+    <?php if(is_home()):?>
         <div class="container">
-            <div class="main-address">
-        		<?php if ( is_active_sidebar( 'footer-sidebar' ) ) : ?>
-				<div class="footer-widget-area" >
-            		<?php dynamic_sidebar( 'footer-sidebar' ); ?>
-        		</div>
-    			<?php endif; ?>
-                <a href="#"><i>Email:</i> sales@gwall.vn</a>
-                <div class="social-title">Kết Nối Với Chúng Tôi</div>
-                <nav>
-                    <ul>
-                        <li><a href="#"><i class="icon-facebook3"></i></a></li>
-                        <li><a href="#"><i class="icon-twitter"></i></a></li>
-                        <li><a href="#"><i class="icon-pinterest"></i></a></li>
-                        <li><a href="#"><i class="icon-google-plus3"></i></a></li>
-                    </ul>
-                </nav>
-            </div>
+                <?php
+                 if ( is_active_sidebar( 'footer-sidebar' ) ) : ?>
+                <div class="footer-widget-area" >
+                    <?php dynamic_sidebar( 'footer-sidebar' ); ?>
+                </div>
+                <?php endif; ?>
         </div>
+    <?php endif;?>
         <div id="main-footer">
             <p class="footer-text">Copyright © 2015 Bản quyền thuộc về GreenWall. Design by NamNguyen</p>
         </div>

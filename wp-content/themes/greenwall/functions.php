@@ -223,6 +223,43 @@ if ( ! function_exists( 'greenwall_entry_content_page' ) ) {
       the_content();
   }
 }
+
+  
+/**
+@ Hàm hiển thị nội dung của cua product page
+**/  
+if ( ! function_exists( 'greenwall_product' ) ) {
+  function greenwall_product() {
+      $args = array("posts_per_page" => 15, "orderby" => "desc",'category'=> 'Tường Cây');
+      $posts_array = get_posts($args);
+      foreach($posts_array as $post)
+      {
+          $string= '<div class="row">'
+          .'<div class="main-title">'
+          .'<h2>' . $post->post_title . '</h2>'
+          .'</div>'
+          .'<div class="col-sm-6 product-img">'
+          .'<img class="img-responsive" src="'.wp_get_attachment_url( get_post_thumbnail_id($post->ID)).'" alt="tuong cay da dung">'
+          .'</div>'
+          .'<div class="product-info col-sm-6">'
+          .'<p>'.$post->post_excerpt.'</p>'
+          .'<a href="productdetails.html">read more</a>'
+          .'</div>'
+          .'</div>';
+          echo $string;
+      } 
+      /*
+       * Code hiển thị phân trang trong post type
+       */
+      $link_pages = array(
+        'before' => __('<p>Page:', 'greenwall'),
+        'after' => '</p>',
+        'nextpagelink'     => __( 'Next page', 'greenwall' ),
+        'previouspagelink' => __( 'Previous page', 'greenwall' )
+      );
+      wp_link_pages( $link_pages );
+  }
+}
 /**
 @ Hàm hiển thị tag của post
 @ thachpham_entry_tag()
@@ -242,30 +279,23 @@ if ( ! function_exists( 'greenwall_entry_tag' ) ) {
 **/
 function contact_send_message() {
 
-    echo $_POST["yourname"];
-    echo $_POST["youremail"];
-    echo $_POST["subject"];
-    echo $_POST["message"];
     // get the posted data
     $name = $_POST["yourname"];
     $email_address = $_POST["youremail"];
     $subject = $_POST["subject"];
     $message = $_POST["message"];
 
-    define('WP_USE_THEMES', false);
-    require('./wp-load.php');
-
     // write the email content
-    $header .= "MIME-Version: 1.0\n";
-    $header .= "Content-Type: text/html; charset=utf-8\n";
-    $header .= "From:" . $email_address."\n";
+    $header .= "MIME-Version: 1.0"."\r\n";
+    $header .= "Content-Type: text/html; charset=utf-8"."\r\n";
+    $header .= "From:" . $email_address."\r\n";
     $to = "suk3c2uit@gmail.com";
     // send the email using wp_mail()
-    $send=wp_mail($to, $subject, $message, $header);
+    $send=wp_mail($to, $subject, $message,$header);
      if($send) {
           echo "send";
         return false;
-       } else {
+     }else {
            echo $send;
         return true;
        }

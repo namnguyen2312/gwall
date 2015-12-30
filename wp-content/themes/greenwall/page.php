@@ -11,20 +11,18 @@
  *
  * @var bool
  */
+    if(is_home()){
+        get_header();
+    }else{
+        wp_head();  
+    }
 ?>
-
-<?php get_header(); ?>
-<div class="content">
-    <section id="main-content">
+<body>
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 			 <?php get_template_part( 'content' ); ?>
     	<?php endwhile; ?>
     	<?php else : ?>
 			<?php get_template_part( 'content', 'none' ); ?>
     	<?php endif; ?>
-    </section>
-    <section id="sidebar">
-
-    </section>
-</div>
+</body>
 <?php get_footer(); ?>
