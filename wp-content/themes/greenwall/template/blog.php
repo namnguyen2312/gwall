@@ -1,15 +1,14 @@
-
 <?php
-/* Template Name: Product */
+/* Template Name: Blog */
   wp_head();
 
 ?>
-<div id="main-products">
+<div id="blog">
   <header>
-    <?php echo do_shortcode('[title title="Gwall Product" class="contact-bg"]please, dont hesitate to contact us ....![/title]');?>
+    <?php echo do_shortcode('[title title="Blog" class="contact-bg"][/title]');?>
   </header>
-  <div class="container-fluid product-background">
-    <?php greenwall_product(); ?>
+  <div id="mainContent" class="container">
+    <?php greenwall_blog(); ?>
     <?php  /*
        * Code hiển thị phân trang trong post type
        */

@@ -61,6 +61,7 @@ if ( ! function_exists( 'greenwall_setup' ) ) :
 		// Skip link fix
 		wp_enqueue_script( 'greenwall-themepunch-revolution', THEME_URL.'/rs-plugin/js/jquery.themepunch.revolution.min.js', array( 'jquery'), '1.0.0');
 		wp_enqueue_script( 'greenwall-inview', THEME_URL.'/js/jquery.inview.js', array( 'jquery'), '1.0.0' );
+    wp_enqueue_script( 'greenwall-blog', THEME_URL.'/rs-plugin/js/jquery.blog.js', array( 'jquery'), '1.0.0' );
 		wp_enqueue_script( 'greenwall-common', THEME_URL.'/js/jquery.common.js', array( 'jquery'), '1.0.0' );
 		//wp_enqueue_script( 'greenwall-main', get_template_directory_uri().'/js/main.js', array( 'jquery'), '1.0.0' );
 
@@ -230,7 +231,7 @@ if ( ! function_exists( 'greenwall_entry_content_page' ) ) {
 **/  
 if ( ! function_exists( 'greenwall_product' ) ) {
   function greenwall_product() {
-      $args = array("posts_per_page" => 15, "orderby" => "desc",'category'=> 'Tường Cây');
+      $args = array("posts_per_page" => 5, "orderby" => "desc",'category'=> 'Tường Cây');
       $posts_array = get_posts($args);
       foreach($posts_array as $post)
       {
@@ -241,9 +242,9 @@ if ( ! function_exists( 'greenwall_product' ) ) {
           .'<div class="col-sm-6 product-img">'
           .'<img class="img-responsive" src="'.wp_get_attachment_url( get_post_thumbnail_id($post->ID)).'" alt="tuong cay da dung">'
           .'</div>'
-          .'<div class="product-info col-sm-6">'
+          .'<div class="product-info col-sm-6">'  
           .'<p>'.$post->post_excerpt.'</p>'
-          .'<a href="productdetails.html">read more</a>'
+          .'<a href="'.get_permalink($post->ID).'">Read more</a>'
           .'</div>'
           .'</div>';
           echo $string;
@@ -260,6 +261,60 @@ if ( ! function_exists( 'greenwall_product' ) ) {
       wp_link_pages( $link_pages );
   }
 }
+
+/**
+@ Hàm hiển thị nội dung của cua blog page
+**/  
+if ( ! function_exists( 'greenwall_blog' ) ) {
+  function greenwall_blog() {
+      $args = array("posts_per_page" => 9, "orderby" => "desc",'category'=> 'Blog');
+      $posts_array = get_posts($args);
+      foreach($posts_array as $post)
+      {
+          $date=new DateTime($post->post_date);
+          $date=$date->format('Y/m/d');
+          $count=getPostViews($post->ID);
+          $author=get_the_author_meta( 'display_name', $post->post_author );
+          $author_posts=get_the_author_meta( 'user_url', $post->post_author );
+          $string= '<div class="box">'
+                    .'<article>'
+                    .'<figure>'
+                    .'<img height="200" width="370" src="'.wp_get_attachment_url( get_post_thumbnail_id($post->ID)).'" alt="view hydroponics">'
+                    .'</figure>'
+                    .'<div class="article-content">'
+                    .'<head>'
+                    .'<h2>'. $post->post_title .'</h2>'
+                    .'</head>'
+                    .'<footer>'
+                    .'<ul>'
+                    .'<li><i class="icon-user"></i><a href="'.$author_posts.'"><span>'.$author.'</span></a></li>'
+                    .'<li><i class="icon-calendar"></i><span>'.$date.'</span></li>'
+                    .'<li><i class="icon-bubbles4"></i><a href="#"><span>'.$post->comment_count.'</span></a></li>'
+                    .'<li><i class="icon-eye"></i><span>'.$count.'</span></li>'
+                    .'</ul>'
+                    .'</footer>'
+                    .'<div>'
+                    .'<p>'.$post->post_excerpt.'</p>'
+                    .'<div class="readmore"><a href="'.get_permalink($post->ID).'">Read more</a></div>'
+                    .'</div>'
+                    .'</div>'
+                    .'</article>'
+                    .'</div>';
+          echo $string;
+      } 
+      /*
+       * Code hiển thị phân trang trong post type
+       */
+      $link_pages = array(
+        'before' => __('<p>Page:', 'greenwall'),
+        'after' => '</p>',
+        'nextpagelink'     => __( 'Next page', 'greenwall' ),
+        'previouspagelink' => __( 'Previous page', 'greenwall' )
+      );
+      wp_link_pages( $link_pages );
+  }
+}
+
 /**
 @ Hàm hiển thị tag của post
 @ thachpham_entry_tag()
@@ -303,5 +358,29 @@ function contact_send_message() {
 }
 
 add_action('contact_send_message', 'contact_send_message');
-
+/*
+  the functions Set and Get view of the posts
+*/
+function getPostViews($postID){
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+        return "0 View";
+    }
+    return $count.' Views';
+}
+function setPostViews($postID) {
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        $count = 0;
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+    }else{
+        $count++;
+        update_post_meta($postID, $count_key, $count);
+    }
+}
 ?>

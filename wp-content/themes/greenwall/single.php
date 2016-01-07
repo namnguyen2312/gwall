@@ -11,13 +11,15 @@
  *
  * @var bool
  */
+    wp_head();
 ?>
-
-<?php get_header(); ?>
 <div class="content">
     <section id="main-content">
 		<section id="main-content">
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+            <?php
+                 setPostViews(get_post()->ID);
+            ?>
             <?php get_template_part( 'content' ); ?>
         <?php endwhile; ?>
         <?php else : ?>
