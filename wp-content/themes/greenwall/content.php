@@ -11,7 +11,17 @@
  *
  * @var bool
  */
-define('WP_USE_THEMES', true);
-
-/** Loads the WordPress Environment and Template */
-require( dirname( __FILE__ ) . '/wp-blog-header.php' );
+var_dump($post->ID);
+?>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        <div class="entry-thumbnail">
+ 			<?php greenwall_thumbnail( 'thumbnail' ); ?>
+        </div>
+        <header class="entry-header">
+ 			<?php greenwall_entry_header(); ?>
+        </header>
+        <div class="entry-content">
+ 			<?php greenwall_entry_content(); ?>
+ 			<?php ( is_single() ? greenwall_entry_tag() : '' ); ?>
+        </div>
+</article>

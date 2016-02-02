@@ -11,7 +11,27 @@
  *
  * @var bool
  */
-define('WP_USE_THEMES', true);
+    wp_head();
+?>
+<div class="content">
+    <section id="main-content">
+		<section id="main-content">
+        <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+            <?php $cat=get_the_category(get_post()->ID);?>
+            <?php if ($cat[0]->name=="Blog"):?>
+            <?php get_template_part( 'content','blog' ); ?>
+            <?php elseif ($cat[0]->name=="Tường Cây"):?>
+            <?php get_template_part( 'content','product' ); ?>
+            <?php else:?>
+            <?php get_template_part( 'content' ); ?>
+            <?php endif;?>
+        <?php endwhile; ?>
+        <?php else : ?>
+            <?php get_template_part( 'content', 'none' ); ?>
+        <?php endif; ?>
+</section>
+    </section>
+    <section id="sidebar">
 
-/** Loads the WordPress Environment and Template */
-require( dirname( __FILE__ ) . '/wp-blog-header.php' );
+    </section>
+</div>
