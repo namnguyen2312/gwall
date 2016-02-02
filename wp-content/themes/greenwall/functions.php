@@ -73,6 +73,15 @@ if ( ! function_exists( 'greenwall_setup' ) ) :
 		wp_enqueue_script( 'greenwall-common', THEME_URL.'/js/jquery.common.js', array( 'jquery'), '1.0.0' );
     wp_enqueue_script( 'greenwall-scroll', THEME_URL.'/js/jquery.scroll.js', array( 'jquery'), '1.0.0' );
 		//wp_enqueue_script( 'greenwall-main', get_template_directory_uri().'/js/main.js', array( 'jquery'), '1.0.0' );
+    wp_register_script(
+        'infinite_scrolling',//name of script
+        get_template_directory_uri().'/js/jquery.infinitescroll.min.js',//where the file is
+        array('jquery'),//this script requires a jquery script
+        null,//don't have a script version number
+        true//script will de placed on footer
+    );
+
+    wp_enqueue_script('infinite_scrolling');        
 
 	}
 
@@ -88,6 +97,53 @@ function greenwall_widgets_init() { register_sidebar( array( 'name' => __( 'Foot
 }
 add_action( 'widgets_init', 'greenwall_widgets_init' );
 
+function set_infinite_scrolling(){
+
+    echo " <script type='text/javascript'>            
+            /*
+                This is the inifinite scrolling setting, you can modify this at your will
+            */
+            var inf_scrolling = {                
+                /*
+                    img: is the loading image path, add a nice gif loading icon there                    
+                    msgText: the loading message                
+                    finishedMsg: the finished loading message
+                */
+                loading:{
+                    img: '<? echo get_template_directory_uri(); ?>/images/ajax-loading.gif',
+                    msgText: 'Loading next posts....',
+                    finishedMsg: 'Posts loaded!!',
+                },
+
+                /*Next item is set nextSelector. 
+                NextSelector is the css class of page navigation.
+                In our case is #nav-below .nav-previous a
+                */
+                'nextSelector':'#nav-below .nav-previous a',
+
+                //navSelector is a css id of page navigation
+                'navSelector':'#nav-below',
+
+                //itemSelector is the div where post is displayed
+                'itemSelector':'box',
+
+                //contentSelector is the div where page content (posts) is displayed
+                'contentSelector':'#mainContent'
+            };
+
+            /*
+                Last thing to do is configure contentSelector to infinite scroll,
+                with a function jquery from infinite-scroll.min.js
+            */
+            jQuery(inf_scrolling.contentSelector).infinitescroll(inf_scrolling);
+        </script> ";
+}
+
+/*
+    we need to add this action on page's footer.
+    100 is a priority number that correpond a later execution.
+*/
+add_action( 'wp_footer', 'set_infinite_scrolling',100 );
 
 /*
 * Thêm chức năng post thumbnail
@@ -100,26 +156,6 @@ add_theme_support( 'post-thumbnails' );
 */
 add_theme_support( 'title-tag' );
 
-
-/*
-  Thêm chức năng infinite-scroll
-*/
-function gwall_infinite_scroll_init(){
-  add_theme_support( 'infinite-scroll', array(
-    'type'           => 'scroll',
-    'container'      => 'mainContent',
-    'render'         => 'gwall_scroll_render',
-    'footer' => false,
-    'posts_per_page' => 6
-) );
-}
-add_action( 'after_setup_theme', 'gwall_infinite_scroll_init' );
-
-function gwall_scroll_render() {
-  while (have_posts()): the_post();
-    get_template_part( 'blog','standard' );
-  endwhile;
-}
 /*
 * Thêm chức năng post format
 */
@@ -259,7 +295,7 @@ if ( ! function_exists( 'greenwall_entry_content_page' ) ) {
 **/  
 if ( ! function_exists( 'greenwall_product' ) ) {
   function greenwall_product() {
-      $args = array("posts_per_page" => 5, "orderby" => "desc",'category'=> 'Tường Cây');
+      $args = array("posts_per_page" => 5, "orderby" => "desc",'category_name'=> 'Tường Cây');
       $posts_array = get_posts($args);
       foreach($posts_array as $post)
       {
@@ -285,7 +321,7 @@ if ( ! function_exists( 'greenwall_product' ) ) {
 **/  
 if ( ! function_exists( 'greenwall_blog' ) ) {
   function greenwall_blog() {
-      $args = array('order' => 'desc','cat'=> 'Blog');
+      $args = array('order' => 'desc','category_name'=> 'Blog');
       $posts = new WP_Query($args);
       if ( $posts->have_posts() ) : while($posts->have_posts()) : $posts->the_post();
           $date=new DateTime($posts->post->post_date);
@@ -392,5 +428,6 @@ function setPostViews($postID) {
         $count++;
         update_post_meta($postID, $count_key, $count);
     }
-}
+} 
 ?>
+
