@@ -105,6 +105,27 @@ add_theme_support( 'post-formats',
     )
  );
 
+/*
+* add infinite scroll for blog post
+*/
+function gwall_infinite_scroll(){
+add_theme_support( 'infinite-scroll',
+    array(
+       'type'           => 'scroll',
+        'footer_widgets' => false,
+        'container'      => 'container',
+        'wrapper'        => true,
+        'render'         => false,
+        'posts_per_page' => false,
+    )
+ );
+}
+add_action( 'gwall_infinite_scroll', 'gwall_infinite_scroll' );
+
+
+function gwall_infinite_scroll_render() {
+  get_template_part( 'blog' );
+  }
 /**
 
 
@@ -279,7 +300,7 @@ if ( ! function_exists( 'greenwall_blog' ) ) {
           $string= '<div class="box">'
                     .'<article>'
                     .'<figure>'
-                    .'<img height="200" width="370" src="'.wp_get_attachment_url( get_post_thumbnail_id($post->ID)).'" alt="view hydroponics">'
+                    .'<img height="300" width="370" src="'.wp_get_attachment_url( get_post_thumbnail_id($post->ID)).'" alt="view hydroponics">'
                     .'</figure>'
                     .'<div class="article-content">'
                     .'<head>'
@@ -294,7 +315,7 @@ if ( ! function_exists( 'greenwall_blog' ) ) {
                     .'</ul>'
                     .'</footer>'
                     .'<div>'
-                    .'<p>'.$post->post_excerpt.'</p>'
+                    .'<p>'.$post->the_excerpt .'</p>'
                     .'<div class="readmore"><a href="'.get_permalink($post->ID).'">Read more</a></div>'
                     .'</div>'
                     .'</div>'
@@ -383,4 +404,5 @@ function setPostViews($postID) {
         update_post_meta($postID, $count_key, $count);
     }
 }
+
 ?>
