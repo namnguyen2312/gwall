@@ -6,6 +6,7 @@
  *
  * @package greenwall
  */
+ wp_footer();
 ?>
 </section> <!-- End Service -->
 

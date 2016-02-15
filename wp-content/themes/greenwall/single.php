@@ -17,10 +17,14 @@
     <section id="main-content">
 		<section id="main-content">
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-            <?php
-                 setPostViews(get_post()->ID);
-            ?>
+            <?php $cat=get_the_category(get_post()->ID);?>
+            <?php if ($cat[0]->name=="Blog"):?>
+            <?php get_template_part( 'content','blog' ); ?>
+            <?php elseif ($cat[0]->name=="Tường Cây"):?>
+            <?php get_template_part( 'content','product' ); ?>
+            <?php else:?>
             <?php get_template_part( 'content' ); ?>
+            <?php endif;?>
         <?php endwhile; ?>
         <?php else : ?>
             <?php get_template_part( 'content', 'none' ); ?>
@@ -31,4 +35,3 @@
 
     </section>
 </div>
-<?php get_footer(); ?>

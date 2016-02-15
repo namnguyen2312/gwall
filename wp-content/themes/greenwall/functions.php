@@ -12,7 +12,15 @@ include(dirname( __FILE__ ) . '/widget.php');
 
 define('THEME_URL', get_template_directory_uri());
 
-
+/**
+ @ Thiết lập $content_width để khai báo kích thước chiều rộng của nội dung
+ **/
+ if ( ! isset( $content_width ) ) {
+       /*
+        * Nếu biến $content_width chưa có dữ liệu thì gán giá trị cho nó
+        */
+       $content_width = 620;
+  }
 
  if ( ! function_exists( 'greenwall_theme_setup' ) ) {
         /*
@@ -63,7 +71,17 @@ if ( ! function_exists( 'greenwall_setup' ) ) :
 		wp_enqueue_script( 'greenwall-inview', THEME_URL.'/js/jquery.inview.js', array( 'jquery'), '1.0.0' );
     wp_enqueue_script( 'greenwall-blog', THEME_URL.'/rs-plugin/js/jquery.blog.js', array( 'jquery'), '1.0.0' );
 		wp_enqueue_script( 'greenwall-common', THEME_URL.'/js/jquery.common.js', array( 'jquery'), '1.0.0' );
+    wp_enqueue_script( 'greenwall-scroll', THEME_URL.'/js/jquery.scroll.js', array( 'jquery'), '1.0.0' );
 		//wp_enqueue_script( 'greenwall-main', get_template_directory_uri().'/js/main.js', array( 'jquery'), '1.0.0' );
+    wp_register_script(
+        'infinite_scrolling',//name of script
+        get_template_directory_uri().'/js/jquery.infinitescroll.min.js',//where the file is
+        array('jquery'),//this script requires a jquery script
+        null,//don't have a script version number
+        true//script will de placed on footer
+    );
+
+    wp_enqueue_script('infinite_scrolling');        
 
 	}
 
@@ -79,6 +97,53 @@ function greenwall_widgets_init() { register_sidebar( array( 'name' => __( 'Foot
 }
 add_action( 'widgets_init', 'greenwall_widgets_init' );
 
+function set_infinite_scrolling(){
+
+    echo " <script type='text/javascript'>            
+            /*
+                This is the inifinite scrolling setting, you can modify this at your will
+            */
+            var inf_scrolling = {                
+                /*
+                    img: is the loading image path, add a nice gif loading icon there                    
+                    msgText: the loading message                
+                    finishedMsg: the finished loading message
+                */
+                loading:{
+                    img: '<? echo get_template_directory_uri(); ?>/images/ajax-loading.gif',
+                    msgText: 'Loading next posts....',
+                    finishedMsg: 'Posts loaded!!',
+                },
+
+                /*Next item is set nextSelector. 
+                NextSelector is the css class of page navigation.
+                In our case is #nav-below .nav-previous a
+                */
+                'nextSelector':'#nav-below .nav-previous a',
+
+                //navSelector is a css id of page navigation
+                'navSelector':'#nav-below',
+
+                //itemSelector is the div where post is displayed
+                'itemSelector':'box',
+
+                //contentSelector is the div where page content (posts) is displayed
+                'contentSelector':'#mainContent'
+            };
+
+            /*
+                Last thing to do is configure contentSelector to infinite scroll,
+                with a function jquery from infinite-scroll.min.js
+            */
+            jQuery(inf_scrolling.contentSelector).infinitescroll(inf_scrolling);
+        </script> ";
+}
+
+/*
+    we need to add this action on page's footer.
+    100 is a priority number that correpond a later execution.
+*/
+add_action( 'wp_footer', 'set_infinite_scrolling',100 );
 
 /*
 * Thêm chức năng post thumbnail
@@ -90,7 +155,6 @@ add_theme_support( 'post-thumbnails' );
 * Thêm chức năng title-tag để tự thêm <title>
 */
 add_theme_support( 'title-tag' );
-
 
 /*
 * Thêm chức năng post format
@@ -252,7 +316,7 @@ if ( ! function_exists( 'greenwall_entry_content_page' ) ) {
 **/  
 if ( ! function_exists( 'greenwall_product' ) ) {
   function greenwall_product() {
-      $args = array("posts_per_page" => 5, "orderby" => "desc",'category'=> 'Tường Cây');
+      $args = array("posts_per_page" => 5, "orderby" => "desc",'category_name'=> 'Tường Cây');
       $posts_array = get_posts($args);
       foreach($posts_array as $post)
       {
@@ -270,16 +334,6 @@ if ( ! function_exists( 'greenwall_product' ) ) {
           .'</div>';
           echo $string;
       } 
-      /*
-       * Code hiển thị phân trang trong post type
-       */
-      $link_pages = array(
-        'before' => __('<p>Page:', 'greenwall'),
-        'after' => '</p>',
-        'nextpagelink'     => __( 'Next page', 'greenwall' ),
-        'previouspagelink' => __( 'Previous page', 'greenwall' )
-      );
-      wp_link_pages( $link_pages );
   }
 }
 
@@ -288,51 +342,43 @@ if ( ! function_exists( 'greenwall_product' ) ) {
 **/  
 if ( ! function_exists( 'greenwall_blog' ) ) {
   function greenwall_blog() {
-      $args = array("posts_per_page" => 9, "orderby" => "desc",'category'=> 'Blog');
-      $posts_array = get_posts($args);
-      foreach($posts_array as $post)
-      {
-          $date=new DateTime($post->post_date);
+      $args = array('order' => 'desc','category_name'=> 'Blog');
+      $posts = new WP_Query($args);
+      if ( $posts->have_posts() ) : while($posts->have_posts()) : $posts->the_post();
+          $date=new DateTime($posts->post->post_date);
           $date=$date->format('Y/m/d');
-          $count=getPostViews($post->ID);
-          $author=get_the_author_meta( 'display_name', $post->post_author );
-          $author_posts=get_the_author_meta( 'user_url', $post->post_author );
-          $string= '<div class="box">'
+          $count=getPostViews($posts->post->ID);
+          $author=get_the_author_meta( 'display_name', $posts->post->post_author );
+          $author_posts=get_the_author_meta( 'user_url', $post_author );
+          $string= '<div id="box" class="box">'
                     .'<article>'
                     .'<figure>'
-                    .'<img height="300" width="370" src="'.wp_get_attachment_url( get_post_thumbnail_id($post->ID)).'" alt="view hydroponics">'
+                    .'<img height="300" width="370" src="'.wp_get_attachment_url( get_post_thumbnail_id($posts->post->ID)).'" alt="view hydroponics">'
                     .'</figure>'
                     .'<div class="article-content">'
                     .'<head>'
-                    .'<h2>'. $post->post_title .'</h2>'
+                    .'<h2>'. $posts->post->post_title .'</h2>'
                     .'</head>'
                     .'<footer>'
                     .'<ul>'
                     .'<li><i class="icon-user"></i><a href="'.$author_posts.'"><span>'.$author.'</span></a></li>'
                     .'<li><i class="icon-calendar"></i><span>'.$date.'</span></li>'
-                    .'<li><i class="icon-bubbles4"></i><a href="#"><span>'.$post->comment_count.'</span></a></li>'
+                    .'<li><i class="icon-bubbles4"></i><a href="#"><span>'.$posts->post->comment_count.'</span></a></li>'
                     .'<li><i class="icon-eye"></i><span>'.$count.'</span></li>'
                     .'</ul>'
                     .'</footer>'
                     .'<div>'
-                    .'<p>'.$post->the_excerpt .'</p>'
-                    .'<div class="readmore"><a href="'.get_permalink($post->ID).'">Read more</a></div>'
+                    .'<p>'.$posts->post->post_excerpt.'</p>'
+                    .'<div class="readmore"><a href="'.get_permalink($posts->post->_ID).'">Read more</a></div>'
                     .'</div>'
                     .'</div>'
                     .'</article>'
                     .'</div>';
           echo $string;
-      } 
-      /*
-       * Code hiển thị phân trang trong post type
-       */
-      $link_pages = array(
-        'before' => __('<p>Page:', 'greenwall'),
-        'after' => '</p>',
-        'nextpagelink'     => __( 'Next page', 'greenwall' ),
-        'previouspagelink' => __( 'Previous page', 'greenwall' )
-      );
-      wp_link_pages( $link_pages );
+        endwhile;
+      endif; 
+     
+      wp_reset_postdata();
   }
 }
 
@@ -404,5 +450,5 @@ function setPostViews($postID) {
         update_post_meta($postID, $count_key, $count);
     }
 }
-
 ?>
+

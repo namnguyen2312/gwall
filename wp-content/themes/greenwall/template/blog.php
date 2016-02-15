@@ -1,15 +1,11 @@
 <?php
 /* Template Name: Blog */
   wp_head();
-
+  if ( have_posts() ) : while ( have_posts() ) : the_post();
+  get_template_part( 'blog', 'page');
+  endwhile;
+  else :
+  get_template_part( 'content', 'none' ); 
+  endif;
+  get_footer();
 ?>
-<div id="blog">
-  <header>
-    <?php echo do_shortcode('[title title="Blog" class="contact-bg"][/title]');?>
-  </header>
-  <div id="mainContent" class="container">
-    <?php greenwall_blog(); ?>
-   
-  </div>
-</div>
-<?php get_footer();?>
