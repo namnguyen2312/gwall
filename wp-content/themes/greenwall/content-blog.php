@@ -1,5 +1,4 @@
 <?php
-    setPostViews($post->ID);
     $date=new DateTime($post->post_date);
     $date=$date->format('Y/m/d');
     $count=getPostViews($post->ID);
@@ -14,7 +13,7 @@
 		<div id="mainArticle" class="container">
 			<article>
 				<figure>
-					<img src="<?php wp_get_attachment_url( get_post_thumbnail_id($post->ID))?>" alt="view hydroponics">
+					<img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id($post->ID))?>" alt="view hydroponics">
 				</figure>
 					<div class="article-content">
 						<head>
