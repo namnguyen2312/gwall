@@ -6,6 +6,7 @@
 <div id="content">
  
         <section id="main-content">
+            <div class="container">
                 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
                     <?php get_template_part( 'content', 'page'); ?>
                 <?php endwhile; ?>
