@@ -36,45 +36,11 @@ function form_contact($atts,$content=null){
 	$form= '<section id="contact-wrapper">
 			<div  class="container">
 			<div class="row">
-			<div class="'.$atts['class'].'">
-				<h2>'.$atts['title'].'</h2>
-				<form  action="" method="post" class="contact-form row">	
-						<div class="col-sm-6">
-							<label for="yourname" class="field">
-								<input type="text" id="yourname" name="yourname" placeholder="Enter Your Name" required>
-								<span class="icon-user icon"></span>
-							</label>
-						</div>
-						<div class="col-sm-6">
-							<label for="youremail" class="field">
-								<input type="email" id="youremail" name="youremail" placeholder="Enter Your Email" required>
-								<span class="icon-mail2 icon"></span>
-							</label>
-						</div>
-						<div class="col-sm-12">
-							<label for="subject" class="field">
-								<input type="text" id="subject" name="subject" placeholder="Enter Subject" required>
-								<span class="icon-book icon"></span>
-							</label>
-						</div>
-						<div class="col-sm-12" field>
-							<label for="message" class="field clearHeight">
-								<textarea rows="5" id="message" placeholder="Include all the details you can" required></textarea>
-								<span class="icon-bubbles2 icon"></span>
-							</label>
-						</div>
-						<div class="col-sm-12">
-							<button name="submit" type="submit" id="contact-submit" >Send Email</button>
-						</div>
-				</form>
-			</div>
 			'.do_shortcode($content).'	
 			</div>
 			</div>
 			</section>
 			';
-
-	
 	return $form;
 	;
 }

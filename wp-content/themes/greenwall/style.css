@@ -920,35 +920,37 @@ ul.list-info {
   width: 100%;
   margin-bottom: 20px;
 }
-.field input,
-.field textarea {
+ .wpcf7 input,
+ .wpcf7 textarea {
   outline: none;
   outline-offset: 0;
+  margin-bottom: 20px;
+
 }
-.field input:hover ~ span.icon,
-.field input:focus ~ span.icon,
-.field textarea:hover ~ span.icon,
-.field textarea:focus ~ span.icon{
+ .wpcf7 input:hover ~ span.icon,
+ .wpcf7 input:focus ~ span.icon,
+ .wpcf7 textarea:hover ~ span.icon,
+ .wpcf7 textarea:focus ~ span.icon{
   outline: none;
   background: #8BC34A;
 }
-.field > input:hover,
-.field > input:focus,
-.field > textarea:hover,
-.field > textarea:focus{
+.wpcf7> input:hover,
+.wpcf7 >input:focus,
+.wpcf7 > textarea:hover,
+.wpcf7 > textarea:focus{
   outline: none;
   border: 1px solid #8BC34A;
 }
 
-.field input,
-.field textarea {
+.wpcf7 input,
+.wpcf7 textarea {
   width: 100%;
   color:#333;
   font-size: 12px;
   border: 1px solid #DDD;
   padding:12px 20px 10px 50px;
 }
-.field textarea {
+.wpcf7 textarea {
   max-height: 160px;
   height: 160px;
   overflow: auto;
@@ -957,7 +959,7 @@ ul.list-info {
 label.clearHeight {
   line-height: 0.7em;
 }
-.field span.icon {
+.wpcf7 span.icon {
   position: absolute;
   background:none repeat scroll 0% 0% #DDD;
   color:#FFF;
@@ -969,7 +971,7 @@ label.clearHeight {
   width: 38px;
   line-height: 38px;
 }
-button#contact-submit {
+.wpcf7 input[type="submit"] {
   width: 100%;
   height: 30px;
   background: #8BC34A;
@@ -978,6 +980,7 @@ button#contact-submit {
   color: #fff;
   text-transform: uppercase;
   font-weight: 400;
+  text-align: center;
 }
 /*contact info*/
 .contact-info strong {
