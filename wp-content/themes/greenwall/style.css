@@ -417,6 +417,15 @@ overflow:hidden;
   padding-left: 0px;
   padding-right: 0px;
 }
+.col-sm-6 {
+  padding-left:0px !important;
+}
+.col-sm-12{
+  padding-left:0px !important;
+}
+.contact-info{
+  margin-top: -20px !important;
+}
 .single-item .item-description {
   padding-right: 30px;
   padding-left:15px;
@@ -927,17 +936,17 @@ ul.list-info {
   margin-bottom: 20px;
 
 }
- .wpcf7 input:hover ~ span.icon,
- .wpcf7 input:focus ~ span.icon,
- .wpcf7 textarea:hover ~ span.icon,
- .wpcf7 textarea:focus ~ span.icon{
+ div span:hover ~ span.icon,
+ div span:focus ~  span.icon, div span:hover ~ span.icon-1,
+ div span:focus ~  span.icon-1{
   outline: none;
   background: #8BC34A;
 }
-.wpcf7> input:hover,
-.wpcf7 >input:focus,
-.wpcf7 > textarea:hover,
-.wpcf7 > textarea:focus{
+
+div >span> input:hover,
+div >span>input:focus,
+div >span> textarea:hover,
+div >span> textarea:focus{
   outline: none;
   border: 1px solid #8BC34A;
 }
@@ -950,6 +959,7 @@ ul.list-info {
   border: 1px solid #DDD;
   padding:12px 20px 10px 50px;
 }
+
 .wpcf7 textarea {
   max-height: 160px;
   height: 160px;
@@ -959,6 +969,7 @@ ul.list-info {
 label.clearHeight {
   line-height: 0.7em;
 }
+
 .wpcf7 span.icon {
   position: absolute;
   background:none repeat scroll 0% 0% #DDD;
@@ -967,7 +978,19 @@ label.clearHeight {
   left:0px;
   font-size: 16px;
   text-align: center;
-  height: 100%;
+  height: 40px;
+  width: 38px;
+  line-height: 38px;
+}
+.wpcf7 span.icon-1 {
+  position: absolute;
+  background:none repeat scroll 0% 0% #DDD;
+  color:#FFF;
+  top: 0px;
+  left:0px;
+  font-size: 16px;
+  text-align: center;
+  height: 88%;
   width: 38px;
   line-height: 38px;
 }
@@ -1011,7 +1034,8 @@ label.clearHeight {
 }
 
 #map-canvas { 
-  width:100%; height: 480px; margin: 0; 
+  width:100%; height: 480px; 
+  margin-bottom: 30px; 
 }
 
 ::-webkit-input-placeholder {

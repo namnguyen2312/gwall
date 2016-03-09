@@ -16,8 +16,8 @@ function get_title($atts,$content=null){
     ), $atts,'title_test');
 	return  '
 				<div class="'.$atts['class'].'">
-					<h2>'.$atts['title'].'</h2>
-					<h6>'.$content.'</h6></div>'
+					<h1>'.$atts['title'].'</h1>
+					<p>'.$content.'</p></div>'
 					;
 }
 add_shortcode('title','get_title');
@@ -62,7 +62,7 @@ function address_contact($atts,$content=null){
 			  <p><i class="icon-leaf"></i><strong>Show Room : </strong> '.$atts['showroom'].'</p>
 			  <p><i class="icon-phone"></i><strong>Tel :</strong> '.$atts['tel'].'</p>
 			  <p><i class="icon-printer"></i><strong>Fax : </strong>'.$atts['fax'].'</p>
-			  <p><i class="icon-email"></i><strong>Email : </strong>'.$atts['email'].'</p>';
+			  <p><i class="icon-envelop"></i><strong>Email : </strong>'.$atts['email'].'</p>';
 	return $address;
 }
 add_shortcode('address_contact','address_contact');
@@ -94,17 +94,12 @@ add_shortcode('social_link_contact','social_link_contact');
 **/
 function googlemaps_form($atts){
 	$atts=shortcode_atts(array(
-		'http'=>'default',
-		'width'=>'default',
-		'height'=>'default',
-		'style'=>'default'
-		),$atts,'googlemaps_form');
-	return '<iframe 
-				src="'.$atts['http'].'"
-				width="'.$atts['width'].'"
-				height="'.$atts['height'].'"
-				stype="'.$atts['style'].'">
-			</iframe>';
+		'class'=>'default'
+		),$atts,'social_link_contact');
+	$map= '<div class="map-wrapper">
+				<div class="'.$atts['class'].'" id="map-canvas"></div>
+			</div>';
+	return $map;
 }
 add_shortcode('googlemaps','googlemaps_form');
 ?>

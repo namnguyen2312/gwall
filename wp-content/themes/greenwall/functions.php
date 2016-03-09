@@ -61,6 +61,8 @@ if ( ! function_exists( 'greenwall_setup' ) ) :
 		wp_enqueue_script( 'greenwall', 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js', array( 'jquery' ), '1.0.0');
 
 		wp_enqueue_script( 'greenwall-isotope', THEME_URL.'/js/isotope.pkgd.min.js', array( 'jquery' ), '1.0.0');
+    wp_enqueue_script( 'greenwall-1', 'https://maps.googleapis.com/maps/api/js', array( 'jquery' ), '1.0.0');
+
 		
 
 	    // JS helpers (This is also the place where we call the jQuery in array)
@@ -72,7 +74,7 @@ if ( ! function_exists( 'greenwall_setup' ) ) :
     wp_enqueue_script( 'greenwall-blog', THEME_URL.'/rs-plugin/js/jquery.blog.js', array( 'jquery'), '1.0.0' );
 		wp_enqueue_script( 'greenwall-common', THEME_URL.'/js/jquery.common.js', array( 'jquery'), '1.0.0' );
     wp_enqueue_script( 'greenwall-scroll', THEME_URL.'/js/jquery.scroll.js', array( 'jquery'), '1.0.0' );
-		//wp_enqueue_script( 'greenwall-main', get_template_directory_uri().'/js/main.js', array( 'jquery'), '1.0.0' );
+		wp_enqueue_script( 'greenwall-map', get_template_directory_uri().'/js/map.js', array( 'jquery'), '1.0.0' );
     wp_register_script(
         'infinite_scrolling',//name of script
         get_template_directory_uri().'/js/jquery.infinitescroll.min.js',//where the file is
