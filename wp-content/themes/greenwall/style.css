@@ -884,7 +884,7 @@ ul.list-info {
   font-size: 30px;
   padding-top: 80px;
 }
-.contact-bg h1 {
+.contact-bg h1 {  
   font-size: 2.45em;
 }
 .contact-bg p {
@@ -996,7 +996,7 @@ label.clearHeight {
 }
 .wpcf7 input[type="submit"] {
   width: 100%;
-  height: 30px;
+  height: 40px;
   background: #8BC34A;
   outline: none;
   border: 1px solid #8BC34A;
