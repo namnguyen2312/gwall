@@ -61,6 +61,8 @@ if ( ! function_exists( 'greenwall_setup' ) ) :
 		wp_enqueue_script( 'greenwall', 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js', array( 'jquery' ), '1.0.0');
 
 		wp_enqueue_script( 'greenwall-isotope', THEME_URL.'/js/isotope.pkgd.min.js', array( 'jquery' ), '1.0.0');
+    wp_enqueue_script( 'greenwall-1', 'https://maps.googleapis.com/maps/api/js', array( 'jquery' ), '1.0.0');
+
 		
 
 	    // JS helpers (This is also the place where we call the jQuery in array)
@@ -72,7 +74,7 @@ if ( ! function_exists( 'greenwall_setup' ) ) :
     wp_enqueue_script( 'greenwall-blog', THEME_URL.'/rs-plugin/js/jquery.blog.js', array( 'jquery'), '1.0.0' );
 		wp_enqueue_script( 'greenwall-common', THEME_URL.'/js/jquery.common.js', array( 'jquery'), '1.0.0' );
     wp_enqueue_script( 'greenwall-scroll', THEME_URL.'/js/jquery.scroll.js', array( 'jquery'), '1.0.0' );
-		//wp_enqueue_script( 'greenwall-main', get_template_directory_uri().'/js/main.js', array( 'jquery'), '1.0.0' );
+		wp_enqueue_script( 'greenwall-map', get_template_directory_uri().'/js/map.js', array( 'jquery'), '1.0.0' );
     wp_register_script(
         'infinite_scrolling',//name of script
         get_template_directory_uri().'/js/jquery.infinitescroll.min.js',//where the file is
@@ -169,6 +171,27 @@ add_theme_support( 'post-formats',
     )
  );
 
+/*
+* add infinite scroll for blog post
+*/
+function gwall_infinite_scroll(){
+add_theme_support( 'infinite-scroll',
+    array(
+       'type'           => 'scroll',
+        'footer_widgets' => false,
+        'container'      => 'container',
+        'wrapper'        => true,
+        'render'         => false,
+        'posts_per_page' => false,
+    )
+ );
+}
+add_action( 'gwall_infinite_scroll', 'gwall_infinite_scroll' );
+
+
+function gwall_infinite_scroll_render() {
+  get_template_part( 'blog' );
+  }
 /**
 
 
@@ -332,7 +355,7 @@ if ( ! function_exists( 'greenwall_blog' ) ) {
           $string= '<div id="box" class="box">'
                     .'<article>'
                     .'<figure>'
-                    .'<img height="200" width="370" src="'.wp_get_attachment_url( get_post_thumbnail_id($posts->post->ID)).'" alt="view hydroponics">'
+                    .'<img height="300" width="370" src="'.wp_get_attachment_url( get_post_thumbnail_id($posts->post->ID)).'" alt="view hydroponics">'
                     .'</figure>'
                     .'<div class="article-content">'
                     .'<head>'
@@ -428,6 +451,6 @@ function setPostViews($postID) {
         $count++;
         update_post_meta($postID, $count_key, $count);
     }
-} 
+}
 ?>
 

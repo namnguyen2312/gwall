@@ -8,5 +8,4 @@
   get_template_part( 'content', 'none' ); 
   endif;
   get_footer();
-
 ?>
